@@ -5,11 +5,16 @@ Alexandre PERSEVAL
 Tristan Valet
 
 La BDD est en MySQL, voir fichier anecdate-api.sql .
-
 L'API est en Node JS.
 
+/* Installation - exécution */
+
 npm install
+
 npm install nodemon
+
 npm install mysql
 
 nodemon
+
+http://http://localhost:8080/anecdate
