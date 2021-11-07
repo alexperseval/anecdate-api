@@ -17,4 +17,4 @@ npm install mysql
 
 nodemon
 
-http://http://localhost:8080/anecdate
+http://localhost:8080/anecdate
