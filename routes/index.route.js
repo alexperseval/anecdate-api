@@ -1,9 +1,21 @@
 const express = require('express');
 const anecdate = require('./anecdate.route');
+const category = require('./category.route');
+const user = require('./user.route');
+const comment = require('./comment.route');
+const report = require('./report.route');
 
 const router = express.Router();
 
-router.use('/anecdate', anecdate);
+router.use('/api/anecdate', anecdate);
+
+router.use('/api/category', category);
+
+router.use('/api/user', user);
+
+router.use('/api/comment', comment);
+
+router.use('/api/report', report);
 
 router.get('/', (req, res) => res.send('Anecdate API'));
 
