@@ -41,7 +41,7 @@ Anecdate.update = (id, anecdate, result) => {
         result(err, null);
         return;
       }
-      result(null, result.affectedRows);
+      result(null, res.affectedRows);
     });
   } else
     result('Fields to update dont match', null);
@@ -64,7 +64,7 @@ Anecdate.findById = (anecdateId, result) => {
 };
 
 Anecdate.findByDate = (date, result) => {
-  sql.query(`SELECT * FROM anecdate WHERE DATE_FORMAT(date, "%m-%d") = DATE_FORMAT(?,"%m-%d")`, date, (err, res) => {
+  sql.query(`SELECT * FROM anecdate WHERE DATE_FORMAT(date, "%m-%d") = DATE_FORMAT(?)`, date, (err, res) => {
     if (err) {
       result(err, null);
       return;

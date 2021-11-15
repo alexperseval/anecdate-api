@@ -47,8 +47,17 @@ exports.create = (req, res) => {
                             message:
                                 err.message || "Some error occurred while creating the Anecdate quiz."
                         });
+
+                    //Mise à jour de l'idQuiz de l'anecdate
                     data.idQuiz = data.id;
-                    Anecdate.update(data.id, data);
+                    Anecdate.update(data.id, data, (err, d) => {
+                        if (err) {
+                            console.log(err)
+                            res.status(500).send({
+                                message: "Error updating Anecdate with id " + data.id
+                            });
+                        }
+                    });
                     res.send({ data, quizz: { ...dataQuiz } });
                 });
             } else
@@ -75,7 +84,7 @@ exports.update = (req, res) => {
         }
     });
 
-    const Anecdate = new Anecdate({
+    const anecdate = new Anecdate({
         status: req.query['status'],
         title: req.query['title'],
         date: req.query['date'],
@@ -95,7 +104,7 @@ exports.update = (req, res) => {
             });
         } else res.send(data);
     });
-    
+
 };
 
 /*Fonction de récupération d'une anecdote en fonction de son ID*/
