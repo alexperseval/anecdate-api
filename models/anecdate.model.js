@@ -64,7 +64,7 @@ Anecdate.findById = (anecdateId, result) => {
 };
 
 Anecdate.findByDate = (date, result) => {
-  sql.query(`SELECT * FROM anecdate WHERE date = ${date}`, (err, res) => {
+  sql.query(`SELECT * FROM anecdate WHERE DATE_FORMAT(date, "%m-%d") = DATE_FORMAT(?,"%m-%d")`, date, (err, res) => {
     if (err) {
       result(err, null);
       return;

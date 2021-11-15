@@ -47,6 +47,8 @@ exports.create = (req, res) => {
                             message:
                                 err.message || "Some error occurred while creating the Anecdate quiz."
                         });
+                    data.idQuiz = data.id;
+                    Anecdate.update(data.id, data);
                     res.send({ data, quizz: { ...dataQuiz } });
                 });
             } else

@@ -13,7 +13,6 @@ const Quiz = function(quiz) {
 Quiz.create = (newQuiz, result) => {
   sql.query("INSERT INTO quiz SET ?", newQuiz, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
