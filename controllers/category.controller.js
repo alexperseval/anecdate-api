@@ -8,7 +8,7 @@ exports.create = (req, res) => {
     const category = new Category({
         name: req.query['name'],
         creation_date: moment().format("YYYY-MM-DD"),
-        status: req.query['status']
+        status: "active"
     });
 
     // Save Category in the database
@@ -36,7 +36,7 @@ exports.update = (req, res) => {
             res.status(500).send({
                 message: "Error updating Category with id " + req.params.categoryId
             });
-        } else res.send(data);
+        } else res.sendStatus(200);
     });
 
 };
@@ -67,5 +67,17 @@ exports.findAll = (req, res) => {
                     err.message || "Some error occurred while retrieving categorys."
             });
         else res.send(data);
+    });
+};
+
+/*Fonction de suppression d'une catégorie*/
+exports.delete = (req, res) => {
+    Category.delete(req.params.categoryId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving category."
+            });
+        else res.sendStatus(200);
     });
 };

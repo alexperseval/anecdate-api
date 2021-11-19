@@ -9,6 +9,8 @@ router.route('/').get(categoryController.findAll);
 
 router.route('/:categoryId/').get(categoryController.findOne);
 
-router.route('/update/:categoryId/').get(categoryController.update);
+router.route('/:categoryId/').put(categoryController.update);
+
+router.route('/:categoryId/').delete(categoryController.delete);
 
 module.exports = router;

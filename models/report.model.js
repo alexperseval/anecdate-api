@@ -70,4 +70,15 @@ Report.getAll = result => {
   });
 };
 
+Report.delete = (reportId, result) => {
+  sql.query(`UPDATE report SET status="inactive" WHERE id = ${reportId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 module.exports = Report;

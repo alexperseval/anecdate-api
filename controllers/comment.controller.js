@@ -6,7 +6,7 @@ exports.create = (req, res) => {
 
     // Create a Comment
     const comment = new Comment({
-        status: req.query['status'],
+        status: "active",
         idAuthor: req.query['idAuthor'],
         message: req.query['message'],
         date: moment().format("YYYY-MM-DD"),
@@ -71,5 +71,17 @@ exports.findAll = (req, res) => {
                     err.message || "Some error occurred while retrieving comments."
             });
         else res.send(data);
+    });
+};
+
+/*Fonction de suppression d'un comment*/
+exports.delete = (req, res) => {
+    Comment.delete(req.params.commentId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving comment with id " + req.params.commentId
+            });
+        else res.sendStatus(200);
     });
 };

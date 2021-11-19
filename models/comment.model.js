@@ -69,4 +69,15 @@ Comment.getAll = result => {
   });
 };
 
+Comment.delete = (commentId, result) => {
+  sql.query(`UPDATE comment SET status="inactive" WHERE id = ${commentId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 module.exports = Comment;

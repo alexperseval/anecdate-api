@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     // Create a User
     const user = new User({
         role: 2,
-        status: req.query['status'],
+        status: "active",
         pseudo: req.query['pseudo'],
         mail: req.query['mail'],
         password: req.query['password'],
@@ -44,7 +44,7 @@ exports.update = (req, res) => {
             res.status(500).send({
                 message: "Error updating User with id " + req.params.userId
             });
-        } else res.send(data);
+        } else res.sendStatus(200);
     });
 
 };
@@ -143,5 +143,17 @@ exports.getCategories = (req, res) => {
                 });
             }
         } else res.send(data);
+    });
+};
+
+/*Fonction de suppression d'un user*/
+exports.delete = (req, res) => {
+    User.delete(req.params.userId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving category with id " + req.params.userId
+            });
+        else res.sendStatus(200);
     });
 };

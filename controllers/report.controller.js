@@ -11,7 +11,7 @@ exports.create = (req, res) => {
         object: req.query['object'],
         comment: req.query['comment'],
         object: req.query['object'],
-        status: req.query['status'],
+        status: "active",
         date: moment().format("YYYY-MM-DD")
     });
 
@@ -44,7 +44,7 @@ exports.update = (req, res) => {
             res.status(500).send({
                 message: "Error updating Report with id " + req.params.reportId
             });
-        } else res.send(data);
+        } else res.sendStatus(200);
     });
 
 };
@@ -75,5 +75,17 @@ exports.findAll = (req, res) => {
                     err.message || "Some error occurred while retrieving reports."
             });
         else res.send(data);
+    });
+};
+
+/*Fonction de suppression d'un report*/
+exports.delete = (req, res) => {
+    Report.delete(req.params.reportId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving report with id " + req.params.reportId
+            });
+        else res.sendStatus(200);
     });
 };

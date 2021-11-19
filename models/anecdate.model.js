@@ -96,4 +96,15 @@ Anecdate.getAll = result => {
   });
 };
 
+Anecdate.delete = (anecdateId, result) => {
+  sql.query(`UPDATE anecdate SET status="inactive" WHERE id = ${anecdateId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 module.exports = Anecdate;

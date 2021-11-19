@@ -9,6 +9,8 @@ router.route('/').get(reportController.findAll);
 
 router.route('/:reportId/').get(reportController.findOne);
 
-router.route('/update/:reportId/').get(reportController.update);
+router.route('/:reportId/').put(reportController.update);
+
+router.route('/:reportId/').delete(reportController.delete);
 
 module.exports = router;

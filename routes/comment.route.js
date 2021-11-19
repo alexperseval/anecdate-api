@@ -9,6 +9,8 @@ router.route('/').get(commentController.findAll);
 
 router.route('/:commentId/').get(commentController.findOne);
 
-router.route('/update/:commentId/').get(commentController.update);
+router.route('/:commentId/').put(commentController.update);
+
+router.route('/:commentId/').delete(commentController.delete);
 
 module.exports = router;

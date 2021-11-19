@@ -115,4 +115,15 @@ User.getCategories = (userId, result) => {
   });
 };
 
+User.delete = (userId, result) => {
+  sql.query(`UPDATE user SET status="inactive" WHERE id = ${userId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 module.exports = User;

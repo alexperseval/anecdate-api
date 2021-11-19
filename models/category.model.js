@@ -67,4 +67,15 @@ Category.getAll = result => {
   });
 };
 
+Category.delete = (categoryId, result) => {
+  sql.query(`UPDATE category SET status="inactive" WHERE id = ${categoryId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 module.exports = Category;
