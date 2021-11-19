@@ -126,4 +126,17 @@ User.delete = (userId, result) => {
   });
 };
 
+User.connect = (username, password, result) => {
+  sql.query(`SELECT * FROM user WHERE (pseudo="${username}" OR mail="${username}") AND password="${password}"`, (err, res) => {
+    if (res.length) {
+      result(res[0].id);
+      return;
+    }
+
+    result(null);
+    return;
+
+  });
+}
+
 module.exports = User;

@@ -1,17 +1,18 @@
 const express = require('express');
+var middleware = require('../auth/middleware');
 const router = express.Router({ mergeParams: true });
 
 const userController = require('../controllers/user.controller');
 
-router.route('/').post(userController.create);
+router.route('/').post(middleware.checkToken, userController.create);
 
 router.route('/').get(userController.findAll);
 
 router.route('/:userId/').get(userController.findOne);
 
-router.route('/:userId/').put(userController.update);
+router.route('/:userId/').put(middleware.checkToken, userController.update);
 
-router.route('/:userId/').delete(userController.delete);
+router.route('/:userId/').delete(middleware.checkToken, userController.delete);
 
 router.route('/:userId/comments').get(userController.getComments);
 
