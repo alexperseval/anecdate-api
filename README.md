@@ -4,7 +4,7 @@ GitHub de l'API de l'application Anec'Date
 Alexandre PERSEVAL
 Tristan Valet
 
-La BDD est en MySQL, voir fichier anecdate-api.sql .
+La BDD est en MySQL.
 L'API est en Node JS.
 
 # Installation - exécution
