@@ -11,10 +11,6 @@ L'API est en Node JS.
 
 npm install
 
-npm install nodemon
-
-npm install mysql
-
-nodemon
+node index.js
 
 http://localhost:8080/api/anecdate
