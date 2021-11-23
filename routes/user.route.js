@@ -6,7 +6,7 @@ const userController = require('../controllers/user.controller');
 
 router.route('/').post(middleware.checkToken, userController.create);
 
-router.route('/').get(userController.findAll);
+//router.route('/').get(userController.findAll);
 
 router.route('/:userId/').get(userController.findOne);
 

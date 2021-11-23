@@ -1,13 +1,27 @@
-const Anecdate = require('../models/anecdate.model.js')
+const Anecdate = require('../models/anecdate.model.js');
 const moment = require('moment');
 const Quiz = require('../models/quiz.model.js');
-var cloudinary = require('cloudinary').v2
+var cloudinary = require('cloudinary').v2;
+var fs = require('fs');
 
 function sendImage(id, path) {
     cloudinary.uploader.upload(path + "", function (error, result) {
         if (error) {
             return error;
         } else {
+            /*Suppression de l'image locale*/
+            fs.stat(path, function (err, stats) {
+                //console.log(stats);
+                if (err) {
+                    console.error(err);
+                }
+
+                fs.unlink(path, function (err) {
+                    //if (err) return console.log(err);
+                    //console.log('file deleted successfully');
+                });
+            });
+
             // Modification de l'URL de l'image dans la db
             const anecdate = new Anecdate({
                 image: result.url
@@ -29,6 +43,7 @@ exports.create = (req, res) => {
         res.status(500).send({
             message: "Some error occurred whith the image."
         });
+        return;
     }
 
     // Create a Anecdate
@@ -100,7 +115,7 @@ exports.create = (req, res) => {
                     res.status(500).send({
                         message: error + " : Some error occurred whith the image."
                     });
-                res.send(data);
+                res.send(data);                
             }
         }
     });
