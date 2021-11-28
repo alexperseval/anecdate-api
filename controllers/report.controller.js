@@ -40,7 +40,6 @@ exports.update = (req, res) => {
     });
     Report.update(req.params.reportId, report, (err, data) => {
         if (err) {
-            console.log(err)
             res.status(500).send({
                 message: "Error updating Report with id " + req.params.reportId
             });

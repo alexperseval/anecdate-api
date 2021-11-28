@@ -10,7 +10,6 @@ const Category = function(category) {
 Category.create = (newCategory, result) => {
   sql.query("INSERT INTO category SET ?", newCategory, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
@@ -42,7 +41,6 @@ Category.update = (id, category, result) => {
 Category.findById = (categoryId, result) => {
   sql.query(`SELECT * FROM category WHERE id = ${categoryId}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
@@ -68,7 +66,7 @@ Category.getAll = result => {
 };
 
 Category.delete = (categoryId, result) => {
-  sql.query(`UPDATE category SET status="inactive" WHERE id = ${categoryId}`, (err, res) => {
+  sql.query(`DELETE FROM category WHERE id = ${categoryId}`, (err, res) => {
     if (err) {
       result(err, null);
       return;

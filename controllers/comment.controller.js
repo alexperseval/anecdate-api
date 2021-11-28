@@ -36,7 +36,6 @@ exports.update = (req, res) => {
     });
     Comment.update(req.params.commentId, comment, (err, data) => {
         if (err) {
-            console.log(err)
             res.status(500).send({
                 message: "Error updating Comment with id " + req.params.commentId
             });

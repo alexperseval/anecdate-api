@@ -14,7 +14,6 @@ const User = function (user) {
 User.create = (newUser, result) => {
   sql.query("INSERT INTO user SET ?", newUser, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
@@ -46,7 +45,6 @@ User.update = (id, user, result) => {
 User.findById = (userId, result) => {
   sql.query(`SELECT * FROM user WHERE id = ${userId}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }

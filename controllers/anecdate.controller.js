@@ -11,7 +11,6 @@ function sendImage(id, path) {
         } else {
             /*Suppression de l'image locale*/
             fs.stat(path, function (err, stats) {
-                //console.log(stats);
                 if (err) {
                     console.error(err);
                 }
@@ -95,7 +94,6 @@ exports.create = (req, res) => {
                     data.idQuiz = idGenerated;
                     Anecdate.update(idGenerated, data, (err, data) => {
                         if (err) {
-                            console.log(err)
                             res.status(500).send({
                                 message: "Error updating Anecdate with id " + id
                             });
@@ -132,7 +130,6 @@ exports.update = (req, res) => {
     })
     Quiz.update(req.params.anecdateId, quiz, (err, data) => {
         if (err) {
-            console.log(err)
             res.status(500).send({
                 message: "Error updating Anecdate with id " + req.params.anecdateId
             });

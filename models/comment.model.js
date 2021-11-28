@@ -12,7 +12,6 @@ const Comment = function(comment) {
 Comment.create = (newComment, result) => {
   sql.query("INSERT INTO comment SET ?", newComment, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
@@ -44,7 +43,6 @@ Comment.update = (id, comment, result) => {
 Comment.findById = (commentId, result) => {
   sql.query(`SELECT * FROM comment WHERE id = ${commentId}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }

@@ -13,7 +13,6 @@ const Report = function(report) {
 Report.create = (newReport, result) => {
   sql.query("INSERT INTO report SET ?", newReport, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }
@@ -45,7 +44,6 @@ Report.update = (id, report, result) => {
 Report.findById = (reportId, result) => {
   sql.query(`SELECT * FROM report WHERE id = ${reportId}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }

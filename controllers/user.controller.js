@@ -40,7 +40,6 @@ exports.update = (req, res) => {
     });
     User.update(req.params.userId, user, (err, data) => {
         if (err) {
-            console.log(err)
             res.status(500).send({
                 message: "Error updating User with id " + req.params.userId
             });

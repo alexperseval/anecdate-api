@@ -44,7 +44,6 @@ Quiz.update = (id, quiz, result) => {
 Quiz.findById = (quizId, result) => {
   sql.query(`SELECT * FROM quiz WHERE id = ${quizId}`, (err, res) => {
     if (err) {
-      console.log("error: ", err);
       result(err, null);
       return;
     }

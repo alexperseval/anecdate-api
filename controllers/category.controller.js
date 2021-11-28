@@ -1,12 +1,13 @@
 const Category = require('../models/category.model.js')
 const moment = require('moment');
+const util = require('util')
 
 /*Fonction de création d'une categorie*/
 exports.create = (req, res) => {
 
     // Create a Category
     const category = new Category({
-        name: req.query['name'],
+        name: req.body['name'],
         creation_date: moment().format("YYYY-MM-DD"),
         status: "active"
     });
@@ -32,7 +33,6 @@ exports.update = (req, res) => {
     });
     Category.update(req.params.categoryId, category, (err, data) => {
         if (err) {
-            console.log(err)
             res.status(500).send({
                 message: "Error updating Category with id " + req.params.categoryId
             });

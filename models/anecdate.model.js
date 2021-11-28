@@ -64,10 +64,8 @@ Anecdate.findById = (anecdateId, result) => {
 };
 
 Anecdate.findByDate = (date, result) => {
-  console.log("date:" + date);
   sql.query(`SELECT * FROM anecdate WHERE DATE_FORMAT(date, "%m-%d") = DATE_FORMAT(?, "%m-%d")`, date, (err, res) => {
     if (err) {
-      console.log(err)
       result(err, null);
       return;
     }
