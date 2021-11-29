@@ -6,11 +6,11 @@ exports.create = (req, res) => {
 
     // Create a Report
     const report = new Report({
-        idAuthor: req.query['idAuthor'],
-        idAnecdate: req.query['idAnecdate'],
-        object: req.query['object'],
-        comment: req.query['comment'],
-        object: req.query['object'],
+        idAuthor: req.body['idAuthor'],
+        idAnecdate: req.body['idAnecdate'],
+        object: req.body['object'],
+        comment: req.body['comment'],
+        object: req.body['object'],
         status: "active",
         date: moment().format("YYYY-MM-DD")
     });
@@ -30,13 +30,13 @@ exports.create = (req, res) => {
 /*Fonction de modification d'une categorie en fonction de son ID*/
 exports.update = (req, res) => {
     const report = new Report({
-        idAuthor: req.query['idAuthor'],
-        idAnecdate: req.query['idAnecdate'],
-        object: req.query['object'],
-        comment: req.query['comment'],
-        object: req.query['object'],
-        status: req.query['status'],
-        date: req.query['date']
+        idAuthor: req.body['idAuthor'],
+        idAnecdate: req.body['idAnecdate'],
+        object: req.body['object'],
+        comment: req.body['comment'],
+        object: req.body['object'],
+        status: req.body['status'],
+        date: req.body['date']
     });
     Report.update(req.params.reportId, report, (err, data) => {
         if (err) {

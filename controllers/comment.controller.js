@@ -7,10 +7,10 @@ exports.create = (req, res) => {
     // Create a Comment
     const comment = new Comment({
         status: "active",
-        idAuthor: req.query['idAuthor'],
-        message: req.query['message'],
+        idAuthor: req.body['idAuthor'],
+        message: req.body['message'],
         date: moment().format("YYYY-MM-DD"),
-        idAnecdate: req.query['idAnecdate']
+        idAnecdate: req.body['idAnecdate']
     });
 
     // Save Comment in the database
@@ -28,11 +28,11 @@ exports.create = (req, res) => {
 /*Fonction de modification d'un comment en fonction de son ID*/
 exports.update = (req, res) => {
     const comment = new Comment({
-        status: req.query['status'],
-        idAuthor: req.query['idAuthor'],
-        message: req.query['message'],
-        date: req.query['date'],
-        idAnecdate: req.query['idAnecdate']
+        status: req.body['status'],
+        idAuthor: req.body['idAuthor'],
+        message: req.body['message'],
+        date: req.body['date'],
+        idAnecdate: req.body['idAnecdate']
     });
     Comment.update(req.params.commentId, comment, (err, data) => {
         if (err) {

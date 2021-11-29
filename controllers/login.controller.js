@@ -3,8 +3,8 @@ var jwt = require('jsonwebtoken');
 const config = require('../config')
 
 exports.login = (req, result) => {
-    let username = req.query["username"];
-    let password = req.query["password"];
+    let username = req.body["username"];
+    let password = req.body["password"];
 
     if (username && password) {
         User.connect(username, password, res => {

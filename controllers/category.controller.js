@@ -27,9 +27,9 @@ exports.create = (req, res) => {
 /*Fonction de modification d'une categorie en fonction de son ID*/
 exports.update = (req, res) => {
     const category = new Category({
-        name: req.query['name'],
-        creation_date: req.query['creation_date'],
-        status: req.query['status']
+        name: req.body['name'],
+        creation_date: req.body['creation_date'],
+        status: req.body['status']
     });
     Category.update(req.params.categoryId, category, (err, data) => {
         if (err) {

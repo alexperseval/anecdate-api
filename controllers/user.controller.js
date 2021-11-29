@@ -8,11 +8,11 @@ exports.create = (req, res) => {
     const user = new User({
         role: 2,
         status: "active",
-        pseudo: req.query['pseudo'],
-        mail: req.query['mail'],
-        password: req.query['password'],
+        pseudo: req.body['pseudo'],
+        mail: req.body['mail'],
+        password: req.body['password'],
         creation_date: moment().format("YYYY-MM-DD"),
-        mode_quiz: req.query['mode_quiz']
+        mode_quiz: req.body['mode_quiz']
     });
 
     // Save User in the database
@@ -31,12 +31,12 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
     const user = new User({
         role: 2,
-        status: req.query['status'],
-        pseudo: req.query['pseudo'],
-        mail: req.query['mail'],
-        password: req.query['password'],
-        creation_date: req.query['creation_date'],
-        mode_quiz: req.query['mode_quiz']
+        status: req.body['status'],
+        pseudo: req.body['pseudo'],
+        mail: req.body['mail'],
+        password: req.body['password'],
+        creation_date: req.body['creation_date'],
+        mode_quiz: req.body['mode_quiz']
     });
     User.update(req.params.userId, user, (err, data) => {
         if (err) {

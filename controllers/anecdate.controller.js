@@ -48,16 +48,16 @@ exports.create = (req, res) => {
     // Create a Anecdate
     const anecdate = new Anecdate({
         status: "active",
-        title: req.query['title'],
-        date: req.query['date'],
-        idCategory: req.query['idCategory'],
-        description: req.query['description'],
-        sources: req.query['sources'],
+        title: req.body['title'],
+        date: req.body['date'],
+        idCategory: req.body['idCategory'],
+        description: req.body['description'],
+        sources: req.body['sources'],
         idQuiz: null,
         creation_date: moment().format("YYYY-MM-DD"),
         likes: 0,
         dislikes: 0,
-        idAuthor: req.query['idAuthor'],
+        idAuthor: req.body['idAuthor'],
         image: "Uploadinq..."
     });
 
@@ -72,15 +72,14 @@ exports.create = (req, res) => {
             idGenerated = data.id
 
             //Ajout du quiz si il y a les champs associés
-            if (req.query['question'] != null && req.query['true_answer'] != null && req.query['wrong_answer1'] != null && req.query['wrong_answer2'] != null && req.query['wrong_answer3'] != null) {
-
+            if (req.body['question'] != null && req.body['true_answer'] != null && req.body['wrong_answer1'] != null && req.body['wrong_answer2'] != null && req.body['wrong_answer3'] != null) {
                 const quiz = new Quiz({
                     id: idGenerated,
-                    question: req.query['question'],
-                    true_answer: req.query['true_answer'],
-                    wrong_answer1: req.query['wrong_answer1'],
-                    wrong_answer2: req.query['wrong_answer2'],
-                    wrong_answer3: req.query['wrong_answer3'],
+                    question: req.body['question'],
+                    true_answer: req.body['true_answer'],
+                    wrong_answer1: req.body['wrong_answer1'],
+                    wrong_answer2: req.body['wrong_answer2'],
+                    wrong_answer3: req.body['wrong_answer3'],
                 })
 
                 Quiz.create(quiz, (err, dataQuiz) => {
@@ -121,12 +120,13 @@ exports.create = (req, res) => {
 
 /*Fonction de modification d'une anecdote en fonction de son ID*/
 exports.update = (req, res) => {
+    console.log(req.body)
     const quiz = new Quiz({
-        question: req.query['question'],
-        true_answer: req.query['true_answer'],
-        wrong_answer1: req.query['wrong_answer1'],
-        wrong_answer2: req.query['wrong_answer2'],
-        wrong_answer3: req.query['wrong_answer3'],
+        question: req.body['question'],
+        true_answer: req.body['true_answer'],
+        wrong_answer1: req.body['wrong_answer1'],
+        wrong_answer2: req.body['wrong_answer2'],
+        wrong_answer3: req.body['wrong_answer3'],
     })
     Quiz.update(req.params.anecdateId, quiz, (err, data) => {
         if (err) {
@@ -137,16 +137,16 @@ exports.update = (req, res) => {
     });
 
     const anecdate = new Anecdate({
-        status: req.query['status'],
-        title: req.query['title'],
-        date: req.query['date'],
-        idCategory: req.query['idCategory'],
-        description: req.query['description'],
-        sources: req.query['sources'],
-        likes: req.query['likes'],
-        dislikes: req.query['dislikes'],
-        idAuthor: req.query['idAuthor'],
-        image: req.query['image']
+        status: req.body['status'],
+        title: req.body['title'],
+        date: req.body['date'],
+        idCategory: req.body['idCategory'],
+        description: req.body['description'],
+        sources: req.body['sources'],
+        likes: req.body['likes'],
+        dislikes: req.body['dislikes'],
+        idAuthor: req.body['idAuthor'],
+        image: req.body['image']
     });
     Anecdate.update(req.params.anecdateId, anecdate, (err, data) => {
         if (err) {
