@@ -120,7 +120,6 @@ exports.create = (req, res) => {
 
 /*Fonction de modification d'une anecdote en fonction de son ID*/
 exports.update = (req, res) => {
-    console.log(req.body)
     const quiz = new Quiz({
         question: req.body['question'],
         true_answer: req.body['true_answer'],
