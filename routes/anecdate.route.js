@@ -28,6 +28,9 @@ router.route('/:anecdateId/').delete(middleware.checkToken, anecdateController.d
 
 router.route('/:anecdateId/comments').get(anecdateController.getComments);
 
+
+router.route('/:anecdateId/quiz').get(anecdateController.getQuiz);
+
 router.route('/date/:date').get(anecdateController.findByDate);
 
 module.exports = router;

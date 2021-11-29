@@ -85,6 +85,17 @@ Anecdate.getComments = (anecdateId, result) => {
   });
 };
 
+Anecdate.getQuiz = (anecdateId, result) => {
+  sql.query(`SELECT * FROM quiz WHERE id = (SELECT idQuiz FROM anecdate WHERE id = ${anecdateId} )`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 Anecdate.getAll = result => {
   sql.query("SELECT * FROM anecdate", (err, res) => {
     if (err) {

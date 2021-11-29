@@ -210,6 +210,18 @@ exports.getComments = (req, res) => {
     });
 };
 
+/*Fonction de récupération du quiz d'une anecdate*/
+exports.getQuiz = (req, res) => {
+    Anecdate.getQuiz(req.params.anecdateId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving anecdates."
+            });
+        else res.send(data);
+    });
+};
+
 /*Fonction de suppression d'une anecdate*/
 exports.delete = (req, res) => {
     Anecdate.delete(req.params.anecdateId, (err, data) => {
