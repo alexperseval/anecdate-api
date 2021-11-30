@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 
 const userController = require('../controllers/user.controller');
 
-router.route('/').post(middleware.checkToken, userController.create);
+router.route('/').post(userController.create);
 
 //router.route('/').get(userController.findAll);
 
