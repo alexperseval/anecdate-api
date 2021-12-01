@@ -19,7 +19,8 @@ exports.login = (req, result) => {
                 result.send({
                     success: true,
                     message: 'Authentication successful!',
-                    token: token
+                    token: token,
+                    id: res
                 });
             } else {
                 result.status(403).json({
