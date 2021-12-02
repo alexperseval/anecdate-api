@@ -126,13 +126,16 @@ User.delete = (userId, result) => {
 
 User.connect = (username, password, result) => {
   sql.query(`SELECT * FROM user WHERE (pseudo="${username}" OR mail="${username}") AND password="${password}"`, (err, res) => {
-    if (res.length) {
-      result(res[0].id);
-      return;
+    if (err) {
+      result(err, null);
+    } else if (res.length) {
+      if (res[0]["status"] != "active") {
+        result("Account disactivate", res);
+      } else
+        result(null, res[0].id);
+    } else {
+      result(null, null);
     }
-
-    result(null);
-    return;
 
   });
 }

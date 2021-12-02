@@ -7,8 +7,14 @@ exports.login = (req, result) => {
     let password = req.body["password"];
 
     if (username && password) {
-        User.connect(username, password, res => {
-            if (res) {
+        User.connect(username, password, (err,res) => {
+            if(err) {
+                result.status(403).json({
+                    success: false,
+                    message: err
+                });
+            }
+            else if (res) {
                 let token = jwt.sign({ username: username },
                     config.secret,
                     {
@@ -25,7 +31,7 @@ exports.login = (req, result) => {
             } else {
                 result.status(403).json({
                     success: false,
-                    message: 'Incorrect username or password :'
+                    message: 'Incorrect username or password'
                 });
             }
         });
