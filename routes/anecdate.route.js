@@ -24,10 +24,13 @@ router.route('/:anecdateId/').get(anecdateController.findOne);
 
 router.route('/:anecdateId/').put(middleware.checkToken, anecdateController.update);
 
+router.route('/:anecdateId/like').put(middleware.checkToken, anecdateController.like);
+
+router.route('/:anecdateId/dislike').put(middleware.checkToken, anecdateController.dislike);
+
 router.route('/:anecdateId/').delete(middleware.checkToken, anecdateController.delete);
 
 router.route('/:anecdateId/comments').get(anecdateController.getComments);
-
 
 router.route('/:anecdateId/quiz').get(anecdateController.getQuiz);
 

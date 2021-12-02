@@ -222,6 +222,30 @@ exports.getQuiz = (req, res) => {
     });
 };
 
+/*Fonction de like d'une anecdate*/
+exports.like = (req, res) => {
+    Anecdate.like(req.params.anecdateId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving anecdate with id " + req.params.anecdateId
+            });
+        else res.sendStatus(200);
+    });
+};
+
+/*Fonction de dislike d'une anecdate*/
+exports.dislike = (req, res) => {
+    Anecdate.dislike(req.params.anecdateId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving anecdate with id " + req.params.anecdateId
+            });
+        else res.sendStatus(200);
+    });
+};
+
 /*Fonction de suppression d'une anecdate*/
 exports.delete = (req, res) => {
     Anecdate.delete(req.params.anecdateId, (err, data) => {
