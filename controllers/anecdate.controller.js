@@ -72,7 +72,8 @@ exports.create = (req, res) => {
             idGenerated = data.id
 
             //Ajout du quiz si il y a les champs associés
-            if (req.body['question'] != null && req.body['true_answer'] != null && req.body['wrong_answer1'] != null && req.body['wrong_answer2'] != null && req.body['wrong_answer3'] != null) {
+            if (req.body['question'] != null && req.body['true_answer'] != null && req.body['wrong_answer1'] != null && req.body['wrong_answer2'] != null && req.body['wrong_answer3'] != null
+                && req.body['question'] != "" && req.body['true_answer'] != "" && req.body['wrong_answer1'] != "" && req.body['wrong_answer2'] != "" && req.body['wrong_answer3'] != "") {
                 const quiz = new Quiz({
                     id: idGenerated,
                     question: req.body['question'],
