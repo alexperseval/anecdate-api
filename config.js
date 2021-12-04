@@ -1,16 +1,15 @@
-/*
-host: "localhost",
-user: "root",
-password: "",
-database: "anecdate-db",
-*/
-
 module.exports = {
     //Config for db
     host: "remotemysql.com",
     user: "Ssg6Qm9A0E",
     password: "nfg216gOJL",
     database: "Ssg6Qm9A0E",
+/*
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "anecdate-db",*/
+
     // Secret for Bearer tokken
     secret: '7bseYdZCn2B3ym7g',
     //Config for cloudinary

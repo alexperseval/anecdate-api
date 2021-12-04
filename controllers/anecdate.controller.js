@@ -113,7 +113,7 @@ exports.create = (req, res) => {
                     res.status(500).send({
                         message: error + " : Some error occurred whith the image."
                     });
-                res.send(data);                
+                res.send(data);
             }
         }
     });
@@ -121,20 +121,22 @@ exports.create = (req, res) => {
 
 /*Fonction de modification d'une anecdote en fonction de son ID*/
 exports.update = (req, res) => {
-    const quiz = new Quiz({
-        question: req.body['question'],
-        true_answer: req.body['true_answer'],
-        wrong_answer1: req.body['wrong_answer1'],
-        wrong_answer2: req.body['wrong_answer2'],
-        wrong_answer3: req.body['wrong_answer3'],
-    })
-    Quiz.update(req.params.anecdateId, quiz, (err, data) => {
-        if (err) {
-            res.status(500).send({
-                message: "Error updating Anecdate with id " + req.params.anecdateId
-            });
-        }
-    });
+    if (req.body['question'] != null && req.body['true_answer'] && req.body['wrong_answer1'] && req.body['wrong_answer2'] && req.body['wrong_answer3']) {
+        const quiz = new Quiz({
+            question: req.body['question'],
+            true_answer: req.body['true_answer'],
+            wrong_answer1: req.body['wrong_answer1'],
+            wrong_answer2: req.body['wrong_answer2'],
+            wrong_answer3: req.body['wrong_answer3'],
+        })
+        Quiz.update(req.params.anecdateId, quiz, (err, data) => {
+            if (err) {
+                res.status(500).send({
+                    message: "Error updating Anecdate with id " + req.params.anecdateId
+                });
+            }
+        });
+    }
 
     const anecdate = new Anecdate({
         status: req.body['status'],
