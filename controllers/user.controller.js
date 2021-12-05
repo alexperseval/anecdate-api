@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 /*Fonction de modification d'un user en fonction de son ID*/
 exports.update = (req, res) => {
     const user = new User({
-        role: 2,
+        role: req.body['role'],
         status: req.body['status'],
         pseudo: req.body['pseudo'],
         mail: req.body['mail'],
