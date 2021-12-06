@@ -28,6 +28,10 @@ router.route('/:anecdateId/like').put(middleware.checkToken, anecdateController.
 
 router.route('/:anecdateId/dislike').put(middleware.checkToken, anecdateController.dislike);
 
+router.route('/:anecdateId/unlike').put(middleware.checkToken, anecdateController.unlike);
+
+router.route('/:anecdateId/undislike').put(middleware.checkToken, anecdateController.undislike);
+
 router.route('/:anecdateId/').delete(middleware.checkToken, anecdateController.delete);
 
 router.route('/:anecdateId/comments').get(anecdateController.getComments);

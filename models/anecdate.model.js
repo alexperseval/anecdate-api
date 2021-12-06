@@ -129,6 +129,28 @@ Anecdate.dislike = (anecdateId, result) => {
   });
 };
 
+Anecdate.unlike = (anecdateId, result) => {
+  sql.query(`UPDATE anecdate SET likes = likes - 1 WHERE id = ${anecdateId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
+Anecdate.undislike = (anecdateId, result) => {
+  sql.query(`UPDATE anecdate SET dislikes = dislikes - 1 WHERE id = ${anecdateId}`, (err, res) => {
+    if (err) {
+      result(err, null);
+      return;
+    }
+
+    result(null, res);
+  });
+};
+
 Anecdate.delete = (anecdateId, result) => {
   sql.query(`UPDATE anecdate SET status="inactive" WHERE id = ${anecdateId}`, (err, res) => {
     if (err) {

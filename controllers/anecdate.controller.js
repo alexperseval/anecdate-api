@@ -249,6 +249,30 @@ exports.dislike = (req, res) => {
     });
 };
 
+/*Fonction de unlike d'une anecdate*/
+exports.unlike = (req, res) => {
+    Anecdate.unlike(req.params.anecdateId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving anecdate with id " + req.params.anecdateId
+            });
+        else res.sendStatus(200);
+    });
+};
+
+/*Fonction de undislike d'une anecdate*/
+exports.undislike = (req, res) => {
+    Anecdate.undislike(req.params.anecdateId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving anecdate with id " + req.params.anecdateId
+            });
+        else res.sendStatus(200);
+    });
+};
+
 /*Fonction de suppression d'une anecdate*/
 exports.delete = (req, res) => {
     Anecdate.delete(req.params.anecdateId, (err, data) => {
