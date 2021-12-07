@@ -123,7 +123,6 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
     error = 0;
 
-    console.log(req.body)
     if (req.body['question'] != null && req.body['true_answer'] && req.body['wrong_answer1'] && req.body['wrong_answer2'] && req.body['wrong_answer3']) {
         const quiz = new Quiz({
             question: req.body['question'],
@@ -139,7 +138,6 @@ exports.update = (req, res) => {
     }
 
     if (req.body['title'] != null && req.body['date'] != null && req.body['idCategory'] != null && req.body['description'] != null) {
-        console.log("azezaze")
         const anecdate = new Anecdate({
             status: req.body['status'],
             title: req.body['title'],
