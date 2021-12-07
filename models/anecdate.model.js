@@ -75,7 +75,7 @@ Anecdate.findByDate = (date, result) => {
 };
 
 Anecdate.getComments = (anecdateId, result) => {
-  sql.query(`SELECT * FROM comment WHERE idAnecdate = ${anecdateId} ORDER BY date DESC`, (err, res) => {
+  sql.query(`SELECT * FROM comment WHERE idAnecdate = ${anecdateId} ORDER BY date DESC, id DESC`, (err, res) => {
     if (err) {
       result(err, null);
       return;
