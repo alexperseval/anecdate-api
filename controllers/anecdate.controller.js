@@ -121,6 +121,9 @@ exports.create = (req, res) => {
 
 /*Fonction de modification d'une anecdote en fonction de son ID*/
 exports.update = (req, res) => {
+    error = 0;
+
+    console.log(req.body)
     if (req.body['question'] != null && req.body['true_answer'] && req.body['wrong_answer1'] && req.body['wrong_answer2'] && req.body['wrong_answer3']) {
         const quiz = new Quiz({
             question: req.body['question'],
@@ -130,33 +133,37 @@ exports.update = (req, res) => {
             wrong_answer3: req.body['wrong_answer3'],
         })
         Quiz.update(req.params.anecdateId, quiz, (err, data) => {
-            if (err) {
-                res.status(500).send({
-                    message: "Error updating Anecdate with id " + req.params.anecdateId
-                });
-            }
+            if (err)
+                error++;
         });
     }
 
-    const anecdate = new Anecdate({
-        status: req.body['status'],
-        title: req.body['title'],
-        date: req.body['date'],
-        idCategory: req.body['idCategory'],
-        description: req.body['description'],
-        sources: req.body['sources'],
-        likes: req.body['likes'],
-        dislikes: req.body['dislikes'],
-        idAuthor: req.body['idAuthor'],
-        image: req.body['image']
-    });
-    Anecdate.update(req.params.anecdateId, anecdate, (err, data) => {
-        if (err) {
-            res.status(500).send({
-                message: "Error updating Anecdate with id " + req.params.anecdateId
-            });
-        } else res.sendStatus(200);
-    });
+    if (req.body['title'] != null && req.body['date'] != null && req.body['idCategory'] != null && req.body['description'] != null) {
+        console.log("azezaze")
+        const anecdate = new Anecdate({
+            status: req.body['status'],
+            title: req.body['title'],
+            date: req.body['date'],
+            idCategory: req.body['idCategory'],
+            description: req.body['description'],
+            sources: req.body['sources'],
+            likes: req.body['likes'],
+            dislikes: req.body['dislikes'],
+            idAuthor: req.body['idAuthor'],
+            image: req.body['image']
+        });
+        Anecdate.update(req.params.anecdateId, anecdate, (err, data) => {
+            if (err)
+                error++;
+        });
+    }
+
+    if (error > 0)
+        res.status(500).send({
+            message: "Error updating Anecdate with id " + req.params.anecdateId + " : " + err
+        });
+    else
+        res.sendStatus(200);
 
 };
 
