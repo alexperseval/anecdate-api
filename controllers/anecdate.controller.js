@@ -47,7 +47,7 @@ exports.create = (req, res) => {
 
     // Create a Anecdate
     const anecdate = new Anecdate({
-        status: "active",
+        status: "waiting",
         title: req.body['title'],
         date: req.body['date'],
         idCategory: req.body['idCategory'],
