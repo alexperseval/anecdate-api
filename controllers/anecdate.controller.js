@@ -137,7 +137,18 @@ exports.update = (req, res) => {
         });
     }
 
-    if (req.body['title'] != null && req.body['date'] != null && req.body['idCategory'] != null && req.body['description'] != null) {
+    if (req.body['title'] != null
+        || req.body['date'] != null
+        || req.body['idCategory'] != null
+        || req.body['description'] != null
+        || req.body['status'] != null
+        || req.body['sources'] != null
+        || req.body['likes'] != null
+        || req.body['description'] != null
+        || req.body['dislikes'] != null
+        || req.body['idAuthor'] != null
+        || req.body['image'] != null
+    ) {
         const anecdate = new Anecdate({
             status: req.body['status'],
             title: req.body['title'],
